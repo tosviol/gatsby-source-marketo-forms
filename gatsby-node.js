@@ -20,14 +20,14 @@ async function authenticate(authUrl) {
 
 exports.sourceNodes = async ({ actions, createNodeId }, configOptions) => {
   const { createNode } = actions;
-  const { munchkinId, clientId, clientSecret } = configOptions;
+  const { munchkinId, clientId, clientSecret, accessToken } = configOptions;
   const authOptions = queryString.stringify({
     grant_type: 'client_credentials',
     client_id: clientId,
     client_secret: clientSecret
   });
 
-  const formsApiUrl = `https://${munchkinId}.mktorest.com/rest/asset/v1/forms.json?maxReturn=200`;
+  const formsApiUrl = `https://${munchkinId}.mktorest.com/rest/asset/v1/forms.json?maxReturn=200&access_token=${accessToken}`;
   const authUrl = `https://${munchkinId}.mktorest.com/identity/oauth/token?${authOptions}`;
 
   try {
