@@ -18,7 +18,7 @@ const callWithRetry = async (fnName, fn, depth = 0) => {
         depth + 1
       }, trying again in ${20 + 10 * depth}s`
     );
-    await wait(20000 + 10000 * depth);
+    await wait(40000 + 10000 * depth);
 
     return callWithRetry(fn, depth + 1);
   }
@@ -115,7 +115,7 @@ exports.sourceNodes = async ({ actions, createNodeId }, configOptions) => {
         results.errors.map((error) => {
           console.log(`${error.code}: ${error.message}`)
         })
-        //throw Error();
+        throw Error();
       }
 
       return results;
