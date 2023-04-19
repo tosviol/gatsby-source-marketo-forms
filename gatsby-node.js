@@ -110,6 +110,12 @@ exports.sourceNodes = async ({ actions, createNodeId }, configOptions) => {
             error
           );
         });
+      
+      if(results.errors) {
+        results.errors.map((error) => {
+          console.log(`${error.code}: ${error.message}`)
+        })
+      }
 
       return results;
     }
